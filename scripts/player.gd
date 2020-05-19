@@ -6,10 +6,9 @@ var ground_vel = 0
 
 var state = ("idle")
 var target
-onready var current_land = get_node("/root/main/island/Area2D")
+onready var current_land = get_node("/root/main/ship/dock")
+onready var line = get_node("/root/main/line")
 var line_out = false
-
-export (PackedScene) var Line
 
 func _ready():
 	pass
@@ -29,14 +28,16 @@ func _process(delta):
 			velocity = (velocity.normalized() * SPEED * 4)
 			_animate("zip")
 #REACHING TARGET
-		if abs(pos_dif.x) < 10 and abs(pos_dif.y) < 10:
+		if abs(pos_dif.x) < 8 and abs(pos_dif.y) < 8:
 			if state == ("zip"):
-				var line = get_node("/root/main/line")
 				current_land = line.new_land
-				line.queue_free()
+				line._dormant()
 				line_out = false
 			elif state == ("walk"):
-				target.queue_free()
+				if target.get_parent().name == ("gun"):
+					rotation = -PI/2
+				else:
+					target = null
 			state = ("idle")
 			_animate("idle")
 	position += velocity * delta
@@ -50,11 +51,9 @@ func _zip(targ):
 	var pos_dif = targ.global_position - global_position
 	rotation = (atan2(pos_dif.y,pos_dif.x) - PI/2)
 	state = ("idle")
-	var node = Line.instance()
-	get_node("/root/main").call_deferred("add_child", node)
 	line_out = true
-	node.global_position = $hand.global_position
-	node.target = targ
+	line.show()
+	line._go(targ)
 
 func _animate(anim):
 	if $AnimationPlayer.current_animation != anim:

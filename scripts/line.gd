@@ -11,7 +11,14 @@ var new_land
 const SPEED = 600
 var MAX_DIST = 200
 
-var state = ("flying")
+var state = ("idle")
+
+func _go(targ):
+	$hook.global_position = hand.global_position
+	set_process(true)
+	state = ("flying")
+	target = targ
+	$hook.call_deferred("monitoring", true)
 
 func _process(delta):
 #ESTABLISHING DISTANCE FROM PLAYER TO HOOK
@@ -43,16 +50,27 @@ func _process(delta):
 	$links.rotation = (atan2(dist.y,dist.x) + PI/2)
 
 func _on_hook_area_entered(area):
-	if area.is_in_group("land") and area != player.current_land:
+	var main = get_node("/root/main")
+	if area == main.target_land:
 		hooked_vel = area.get_parent().velocity
 		state = ("hooked")
-		target.queue_free()
+		$hook/Sprite.texture = preload("res://assets/player/hooked.png")
+		main.target_land = null
 		new_land = area
 		player._move("zip", $hook/Position2D)
 	elif area == get_node("/root/main/player/Area2D"):
 		if state == ("hooked"):
 			hide()
 		elif state == ("retract"):
-			target.queue_free()
+			main.target_land = null
 			player.line_out = false
-			queue_free()
+			_dormant()
+	elif area.is_in_group("item"):
+		state = ("retract")
+
+func _dormant():
+	hide()
+	$hook.call_deferred("monitoring", false)
+	state = ("idle")
+	$hook/Sprite.texture = preload("res://assets/player/hook.png")
+	set_process(false)

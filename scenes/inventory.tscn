@@ -1,0 +1,125 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/general/pixel.png" type="Texture" id=1]
+[ext_resource path="res://assets/general/square.png" type="Texture" id=2]
+
+[node name="inventory" type="Node2D"]
+
+[node name="background" type="NinePatchRect" parent="."]
+self_modulate = Color( 0.188235, 0.219608, 0.45098, 0.513726 )
+margin_left = 341.9
+margin_top = 182.85
+margin_right = 801.9
+margin_bottom = 466.85
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="background"]
+self_modulate = Color( 0.207843, 0.384314, 0.717647, 0.498039 )
+position = Vector2( 86.8623, 141.76 )
+scale = Vector2( 123.151, 217.98 )
+texture = ExtResource( 1 )
+
+[node name="items" type="Sprite" parent="."]
+self_modulate = Color( 0.207843, 0.384314, 0.717647, 0.498039 )
+position = Vector2( 645.819, 323.856 )
+scale = Vector2( 267.856, 177.282 )
+texture = ExtResource( 1 )
+
+[node name="slot1" type="Sprite" parent="items"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( -0.319017, -0.230556 )
+scale = Vector2( 0.27, 0.381166 )
+texture = ExtResource( 1 )
+
+[node name="slot2" type="Sprite" parent="items"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 0.00174618, -0.230556 )
+scale = Vector2( 0.27, 0.381166 )
+texture = ExtResource( 1 )
+
+[node name="slot3" type="Sprite" parent="items"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 0.322511, -0.230556 )
+scale = Vector2( 0.27, 0.381166 )
+texture = ExtResource( 1 )
+
+[node name="slot4" type="Sprite" parent="items"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( -0.319017, 0.220077 )
+scale = Vector2( 0.27, 0.381166 )
+texture = ExtResource( 1 )
+
+[node name="slot5" type="Sprite" parent="items"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 0.00174618, 0.220077 )
+scale = Vector2( 0.27, 0.381166 )
+texture = ExtResource( 1 )
+
+[node name="slot6" type="Sprite" parent="items"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 0.322511, 0.220077 )
+scale = Vector2( 0.27, 0.381166 )
+texture = ExtResource( 1 )
+
+[node name="metal" type="Sprite" parent="."]
+self_modulate = Color( 0.356863, 0.356863, 0.356863, 1 )
+position = Vector2( 396.032, 248.549 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="metal"]
+margin_left = 36.9042
+margin_top = -6.19025
+margin_right = 76.9042
+margin_bottom = 7.80975
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wood" type="Sprite" parent="."]
+self_modulate = Color( 0.556863, 0.337255, 0.219608, 1 )
+position = Vector2( 397.26, 296.598 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="wood"]
+margin_left = 36.9042
+margin_top = -6.19025
+margin_right = 76.9042
+margin_bottom = 7.80975
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="energy" type="Sprite" parent="."]
+self_modulate = Color( 0.0980392, 0.603922, 0.223529, 1 )
+position = Vector2( 398.753, 349.69 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="energy"]
+margin_left = 36.9042
+margin_top = -6.19025
+margin_right = 76.9042
+margin_bottom = 7.80975
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tech" type="Sprite" parent="."]
+self_modulate = Color( 0.278431, 0.521569, 0.682353, 1 )
+position = Vector2( 399.848, 400.061 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="tech"]
+margin_left = 36.9042
+margin_top = -6.19025
+margin_right = 76.9042
+margin_bottom = 7.80975
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}

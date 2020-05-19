@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/spawner.gd" type="Script" id=1]
 [ext_resource path="res://scenes/island.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/scrap.tscn" type="PackedScene" id=3]
 
 [node name="spawner" type="Node2D"]
 script = ExtResource( 1 )
 Island = ExtResource( 2 )
+Scrap = ExtResource( 3 )
 
 [node name="IslandTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="ScrapTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 [connection signal="timeout" from="IslandTimer" to="." method="_on_IslandTimer_timeout"]
+[connection signal="timeout" from="ScrapTimer" to="." method="_on_ScrapTimer_timeout"]

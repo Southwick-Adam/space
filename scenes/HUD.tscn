@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/HUD.gd" type="Script" id=1]
+[ext_resource path="res://scenes/build.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/UI/icons/sound.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/icons/music.png" type="Texture" id=4]
+[ext_resource path="res://assets/UI/icons/pause.png" type="Texture" id=5]
+[ext_resource path="res://assets/UI/icons/settings.png" type="Texture" id=6]
+[ext_resource path="res://assets/UI/icons/pack.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI/icons/play.png" type="Texture" id=8]
+[ext_resource path="res://assets/UI/icons/build.png" type="Texture" id=9]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 100.0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 40, 142.219 )
+
+[node name="HUD" type="Node2D"]
+script = ExtResource( 1 )
+Build = ExtResource( 2 )
+
+[node name="pack" type="TouchScreenButton" parent="."]
+position = Vector2( 1090, 110.65 )
+shape = SubResource( 5 )
+shape_centered = false
+
+[node name="Sprite" type="Sprite" parent="pack"]
+position = Vector2( 1.8623, 0 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 7 )
+
+[node name="build_btn" type="TouchScreenButton" parent="."]
+position = Vector2( 1090, 180.65 )
+shape = SubResource( 5 )
+shape_centered = false
+
+[node name="Sprite" type="Sprite" parent="build_btn"]
+position = Vector2( 1.8623, 0 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 9 )
+
+[node name="settings" type="TouchScreenButton" parent="."]
+position = Vector2( 1090, 40.6501 )
+shape = SubResource( 2 )
+shape_centered = false
+
+[node name="Sprite" type="Sprite" parent="settings"]
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 6 )
+
+[node name="pause" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 1090, 110.65 )
+shape = SubResource( 2 )
+shape_centered = false
+
+[node name="Sprite" type="Sprite" parent="pause"]
+position = Vector2( 2.27527, -0.568802 )
+scale = Vector2( 0.8, 0.9 )
+texture = ExtResource( 5 )
+
+[node name="sound" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 1090, 180.65 )
+shape = SubResource( 2 )
+shape_centered = false
+
+[node name="Sprite" type="Sprite" parent="sound"]
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 3 )
+
+[node name="music" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 1090, 250.65 )
+shape = SubResource( 2 )
+shape_centered = false
+
+[node name="Sprite" type="Sprite" parent="music"]
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 4 )
+
+[node name="play" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 571.606, 320.482 )
+shape = SubResource( 3 )
+shape_centered = false
+
+[node name="Sprite" type="Sprite" parent="play"]
+texture = ExtResource( 8 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 1085.81, 9.56662 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2( 8.8645, 134.072 )
+shape = SubResource( 4 )
+[connection signal="pressed" from="pack" to="." method="_on_pack_pressed"]
+[connection signal="pressed" from="build_btn" to="." method="_on_build_btn_pressed"]
+[connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="music" to="." method="_on_music_pressed"]
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]

@@ -2,6 +2,7 @@ extends Node2D
 
 onready var main = get_node("/root/main")
 var velocity = Vector2(0,0)
+var saved_vel
 
 func _ready():
 	randomize()
@@ -10,6 +11,7 @@ func _ready():
 	var scale_comp = 0.7 + (.7 * size_rng)
 	scale = Vector2(scale_comp,scale_comp)
 	velocity.y = 30 + (50 * speed_rng)
+	saved_vel = velocity
 
 func _process(delta):
 	position += velocity * delta

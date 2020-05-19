@@ -1,18 +1,13 @@
 extends Node2D
 
 export (PackedScene) var Island
+export (PackedScene) var Scrap
 
 var lane = true
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	_spawn_island()
+	_spawn_island()
 
 func _on_IslandTimer_timeout():
 	_spawn_island()
@@ -27,3 +22,10 @@ func _spawn_island():
 	else:
 		node.global_position = Vector2(865 + (235 * randf()), -140)
 		lane = true
+
+func _on_ScrapTimer_timeout():
+	randomize()
+	var node = Scrap.instance()
+	get_node("/root/main").call_deferred("add_child", node)
+	node.global_position.x = 300 + (800 * randf())
+	node.global_position.y = -50 
